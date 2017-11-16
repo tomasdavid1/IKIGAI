@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('MainProyect/{id}', 'ProyectoController@mostrarProyectoPrincipal');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/firstForm', 'formController@index');
+
+Route::post('/firstForm','formController@handleForm');
