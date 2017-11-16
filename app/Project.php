@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Proyecto extends Model
+class Project extends Model
 {
 
   private $title;
@@ -15,9 +15,10 @@ class Proyecto extends Model
   private $location;
   private $summary;
   private $descrpition;
+  private $collaborators;
 
 
-  
+
 
 
 

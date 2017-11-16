@@ -20,3 +20,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/firstForm', 'formController@index');
 
 Route::post('/firstForm','formController@handleForm');
+
+Route::post('/createProject', 'projectController@createProject');
+
+Route::get('/createProject', 'projectController@index');
+
+Route::get('/project/editProject/{id}', 'projectController@showProjectEditor');
+
+Route::put('/project/editProject/{id}', 'projectController@modifyProject');

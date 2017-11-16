@@ -17,8 +17,8 @@ class FormController extends Controller
         $summ+=$value;
 
       }
-      $mainProyects = Proyecto::whereBetween('summ',[$summ - 4, $summ + 4])->take(10)->get();
-      
+      $mainProyects = Proyecto::whereBetween('summ',[$summ - 100, $summ + 10])->take(10)->get();
+
       return view('proyectsList')->with('mainProyects', $mainProyects);
 
     }
