@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Project;
 
-class DatabaseSeeder extends Seeder
+class Projects extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      $actors = factory(Project::class)->times(50)->create();
+
     }
 }

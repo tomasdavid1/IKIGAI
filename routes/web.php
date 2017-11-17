@@ -26,3 +26,7 @@ Route::get('/createProject', 'projectController@index');
 Route::get('/project/editProject/{id}', 'projectController@showProjectEditor');
 
 Route::put('/project/editProject/{id}', 'projectController@modifyProject');
+
+Route::get('/user', 'userController@showProfile');
+
+Route::put('/user', 'userController@editProfile');

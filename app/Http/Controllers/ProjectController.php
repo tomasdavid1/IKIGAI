@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\User;
 
 class ProjectController extends Controller
 {
@@ -27,14 +28,17 @@ class ProjectController extends Controller
 
       ]);
 
-      $newProject = new Project($request->all());
-      $newProject->save();
+      $newProject = new Project();
+      $newProject->save($request->all());
+
+      DB::table('projects_authors')
+        ->insert(['project_id' => $newProject->id , 'user_id' => Auth::User()->id]);
 
       return redirect()->route('creationSuccesful!');
 
     }
 
-    
+
 
     public function index()
     {
@@ -46,7 +50,7 @@ class ProjectController extends Controller
       return view('projectEditor');
     }
 
-    public function modifyProject(Request $request)
+    public function editProject(Request $request)
     {
 
       $project = Project::find($id);
@@ -57,10 +61,18 @@ class ProjectController extends Controller
       );
       $project->save( $request->all() );
 
+    }
+
+    public function becomeCollaborator(Request $request)
+    {
 
 
 
+    }
 
+    public function FunctionName($value='')
+    {
+      # code...
     }
 
 
