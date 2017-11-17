@@ -2,7 +2,7 @@
 
 
 
-el proyecto principal se llama
+  el proyecto principal se llama
 
 {{$pelicula}}
 

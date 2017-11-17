@@ -27,12 +27,14 @@ class ProjectController extends Controller
 
       ]);
 
-      $newProject = new Project($request->all();)
+      $newProject = new Project($request->all());
       $newProject->save();
 
       return redirect()->route('creationSuccesful!');
 
     }
+
+    
 
     public function index()
     {

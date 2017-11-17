@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('MainProyect/{id}', 'ProyectoController@mostrarProyectoPrincipal');
+Route::get('MainProyect/{id}', 'ProjectController@mostrarProyectoPrincipal');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/firstForm', 'formController@index');
 
