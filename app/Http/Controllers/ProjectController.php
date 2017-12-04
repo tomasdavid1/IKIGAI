@@ -13,13 +13,17 @@ class ProjectController extends Controller
     public function createProject(Request $request)
     {
 
-      $this->validate($requst, [
+      $request->validate( [
 
-        //aca van las reglas de validacion''
-        // ej 'title' => 'required|string|etc',
-        //     'descripcion' => 'required'
+
+       'title'=>'required|max:25',
+       'location'=>'required',
+       'summary'=>'required|max:150',
+       'description'=> 'required',
 
       ],
+
+
       [
 
         //aca van los mensajes ej 'title.required => 'el campo es requerido' sino te aparece en ingles
@@ -66,9 +70,8 @@ class ProjectController extends Controller
     public function becomeCollaborator(Request $request)
     {
 
-      $project = Project::find($id)
-      
-
+      $newMessage = new PartnershipMessage();
+      $newMessage->save($request->all());
 
     }
 

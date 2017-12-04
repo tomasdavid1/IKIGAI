@@ -19,6 +19,8 @@ Route::get('/firstForm', 'formController@index');
 
 Route::post('/firstForm','formController@handleForm');
 
+Route::get('/creatorForm', function(){return view ('createProject');});
+
 Route::post('/createProject', 'projectController@createProject');
 
 Route::get('/createProject', 'projectController@index');
@@ -27,10 +29,16 @@ Route::get('/project/editProject/{id}', 'projectController@showProjectEditor');
 
 Route::put('/project/editProject/{id}', 'projectController@editProject');
 
-Route::get('/project/becomeCollaborator/{id}', function(){return view('project')};);
+Route::get('/project/becomeCollaborator/{id}', function(){return view('project');});
 
 Route::post('/project/becomeCollaborator/{id}','ProjectController@becomeCollaborator ');
 
 Route::get('/user', 'userController@showProfile');
 
 Route::put('/user', 'userController@editProfile');
+
+Route::get('/user/myProjects', 'userController@myProjects');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ProjectsCollaborators extends Migration
+class Messages extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class ProjectsCollaborators extends Migration
      */
     public function up()
     {
-      Schema::create('projects_collaborators', function ($table) {
+      Schema::create('messages', function ($table) {
       $table->increments('id');
-      $table->integer('user_id')->unsigned();
-      $table->foreign('user_id')->references('id')->on('users');
-      $table->integer('project_id')->unsigned();
-      $table->foreign('project_id')->references('id')->on('projects');
+      $table->integer('sender_id')->unsigned();
+      $table->foreign('id')->references('id')->on('users');
+      $table->integer('reciever_id')->unsigned();
+      $table->foreign('id')->references('id')->on('users');
+      $table->string('body');
       $table->timestamps();
     });
   }
-
 
     /**
      * Reverse the migrations.
@@ -31,7 +31,6 @@ class ProjectsCollaborators extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists('projects_collaborators');
-
+        Schema::dropIfExists('messages');
     }
 }

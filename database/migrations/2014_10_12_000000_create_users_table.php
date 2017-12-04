@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->float('X');
             $table->float('Y');
-            $table->projec('myProject');
             $table->rememberToken();
             $table->timestamps();
         });
