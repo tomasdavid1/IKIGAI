@@ -16,13 +16,13 @@ class UserController extends Controller
     public function editProject(Request $request)
     {
 
-      $user = User::find(Auth::User()->id);
+      $project = Project::find(Auth::User()->id);
 
-      $user->validate(
+      $project->validate(
 
         //aca van las  reglas de validacion
       );
-      $user->save( $request->all() );
+      $project->save( $request->all() );
 
     }
 }
