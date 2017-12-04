@@ -16,9 +16,9 @@ class Messages extends Migration
       Schema::create('messages', function ($table) {
       $table->increments('id');
       $table->integer('sender_id')->unsigned();
-      $table->foreign('id')->references('id')->on('users');
+      $table->foreign('sender_id')->references('id')->on('users');
       $table->integer('reciever_id')->unsigned();
-      $table->foreign('id')->references('id')->on('users');
+      $table->foreign('reciever_id')->references('id')->on('users');
       $table->string('body');
       $table->timestamps();
     });

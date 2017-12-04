@@ -19,11 +19,10 @@ Route::get('/firstForm', 'formController@index');
 
 Route::post('/firstForm','formController@handleForm');
 
-Route::get('/creatorForm', function(){return view ('createProject');});
+Route::get('/createProject', function(){return view ('createProject');});
 
 Route::post('/createProject', 'projectController@createProject');
 
-Route::get('/createProject', 'projectController@index');
 
 Route::get('/project/editProject/{id}', 'projectController@showProjectEditor');
 
