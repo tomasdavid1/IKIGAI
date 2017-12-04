@@ -25,7 +25,11 @@ Route::get('/createProject', 'projectController@index');
 
 Route::get('/project/editProject/{id}', 'projectController@showProjectEditor');
 
-Route::put('/project/editProject/{id}', 'projectController@modifyProject');
+Route::put('/project/editProject/{id}', 'projectController@editProject');
+
+Route::get('/project/becomeCollaborator/{id}', function(){return view('project')};);
+
+Route::post('/project/becomeCollaborator/{id}','ProjectController@becomeCollaborator ');
 
 Route::get('/user', 'userController@showProfile');
 

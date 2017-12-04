@@ -45,9 +45,9 @@ class ProjectController extends Controller
       return view('createProject');
     }
 
-    public function showProjectEditor()
+    public function showProjectEditor($id)
     {
-      return view('projectEditor');
+
     }
 
     public function editProject(Request $request)
@@ -66,13 +66,17 @@ class ProjectController extends Controller
     public function becomeCollaborator(Request $request)
     {
 
+      $project = Project::find($id)
+      
 
 
     }
 
-    public function FunctionName($value='')
+    public function confirm($value='')
     {
-      # code...
+
+
+
     }
 
 
