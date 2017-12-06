@@ -11,6 +11,6 @@ class Projects extends Seeder
      */
     public function run()
     {
-
+      
     }
 }

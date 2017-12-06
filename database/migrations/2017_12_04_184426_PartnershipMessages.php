@@ -20,7 +20,7 @@ class PartnershipMessages extends Migration
       $table->integer('reciever_id')->unsigned();
       $table->foreign('reciever_id')->references('id')->on('users');
       $table->string('body');
-      $table->integer('project_id');
+      $table->integer('project_id')->unsigned();
       $table->foreign('project_id')->references('id')->on('projects');
       $table->timestamps();
     });

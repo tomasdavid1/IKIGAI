@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProjectController extends Controller
 {
@@ -14,31 +16,24 @@ class ProjectController extends Controller
     {
 
       $request->validate( [
-
-
        'title'=>'required|max:25',
        'location'=>'required',
        'summary'=>'required|max:150',
        'description'=> 'required',
-
       ],
-
-
       [
-
         //aca van los mensajes ej 'title.required => 'el campo es requerido' sino te aparece en ingles
-
-
-
       ]);
+      $datos = $request->all();
+      $datos['author'] = Auth::User()->id;
+      $datos['rating'] = 0;
+      $newProject = new Project($datos);
+      $newProject->save();
 
-      $newProject = new Project();
-      $newProject->save($request->all());
+      \DB::table('projects_authors')
+        ->insert(['project_id' => $newProject->id , 'author_id' => Auth::User()->id]);
 
-      DB::table('projects_authors')
-        ->insert(['project_id' => $newProject->id , 'user_id' => Auth::User()->id]);
-
-      return redirect()->route('creationSuccesful!');
+      return view('home');
 
     }
 
@@ -49,23 +44,39 @@ class ProjectController extends Controller
       return view('createProject');
     }
 
-    public function showProjectEditor($id)
+
+
+    public function showMyProjects()
     {
+      $myProjects =   \DB::table('projects_authors')
+                          ->join('projects', 'projects.id', '=', 'projects_authors.project_id')
+                          ->where('author_id', '=', Auth::User()->id)
+                          ->get();
+                          
+      return view('myProjects')->with('myProjects', $myProjects);
 
     }
 
-    public function editProject(Request $request)
-    {
+      public function editMyProjects(Request $request)
+      {
+        $request->validate( [
+         'title'=>'required|max:25',
+         'location'=>'required',
+         'summary'=>'required|max:150',
+         'description'=> 'required',
+        ],
+        [
+          //aca van los mensajes ej 'title.required => 'el campo es requerido' sino te aparece en ingles
+        ]);
 
-      $project = Project::find($id);
+        $datos = $request->all();
+        $datos['author'] = Auth::User()->id;
+        $datos['rating'] = 0;
+        $newProject = new Project($datos);
+        $newProject->save();
+      }
 
-      $project->validate(
 
-        //aca van las mismas reglas de validacion que van para el create
-      );
-      $project->save( $request->all() );
-
-    }
 
     public function becomeCollaborator(Request $request)
     {

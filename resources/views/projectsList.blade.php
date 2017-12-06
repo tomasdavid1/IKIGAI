@@ -1,6 +1,6 @@
 <h1>hola, aca van la lista de proyectos
 
 
-{{$mainProyects}}
+{{$mainProjects}}
 
 </h1>

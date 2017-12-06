@@ -15,8 +15,8 @@ class ProjectsCollaborators extends Migration
     {
       Schema::create('projects_collaborators', function ($table) {
       $table->increments('id');
-      $table->integer('user_id')->unsigned();
-      $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('collaborator_id')->unsigned();
+      $table->foreign('collaborator_id')->references('id')->on('users');
       $table->integer('project_id')->unsigned();
       $table->foreign('project_id')->references('id')->on('projects');
       $table->timestamps();

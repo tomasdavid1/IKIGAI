@@ -10,13 +10,13 @@ class Projects extends Migration
      Schema::create('projects', function ($table) {
      $table->increments('id');
      $table->string('title');
-     $table->float('X');
-     $table->float('Y');
+     $table->float('summX')->nullable();
+     $table->float('summY')->nullable();
      $table->string('author');
      $table->bigInteger('rating');
      $table->string('location');
      $table->string('summary');
-     $table->longText('descrpition');
+     $table->longText('description');
      $table->timestamps();
 
 

@@ -1,5 +1,4 @@
-<?php
-var_dump($_POST);?>
+
 
      <html>
        <head>
@@ -16,7 +15,7 @@ var_dump($_POST);?>
      </div>
 
      <div id='form' class='_form'>
-       <form action='#' method='POST' name='addUser'>
+       <form action='/createProject' method='POST' name='addUser'>
 
          <fieldset>
            <legend>Nombre</legend>

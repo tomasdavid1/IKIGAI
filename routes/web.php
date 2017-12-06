@@ -24,7 +24,7 @@ Route::get('/createProject', function(){return view ('createProject');});
 Route::post('/createProject', 'projectController@createProject');
 
 
-Route::get('/project/editProject/{id}', 'projectController@showProjectEditor');
+Route::get('listProjects', 'projectController@showMyProjects');
 
 Route::put('/project/editProject/{id}', 'projectController@editProject');
 
@@ -37,6 +37,16 @@ Route::get('/user', 'userController@showProfile');
 Route::put('/user', 'userController@editProfile');
 
 Route::get('/user/myProjects', 'userController@myProjects');
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

@@ -13,18 +13,18 @@
 
 </div>
 <br><br><br>
+
+<div> DESCRPCION:
+
+TIpo... Ikigai es la plataforma que te ayudara a encontrar aquello que le da sentido a tu vida.
+
+Para ello, necesitamos saber de ti!
+
+Responde este breve cuestionario y estaremos listos para comenzar... </div>
+
 <div id='form' class='_form'>
-  <form action='#' method='POST' name='addUser'>
+  <form action='/firstForm' method='POST' name='addUser'>
     {{csrf_field()}}
-    <fieldset>
-
-        <label class='input-check'>Escriba su ubicacion</label>
-        <textarea name="name" rows="1" cols="10" ></textarea>
-
-
-
-    </fieldset>
-
     <fieldset>
       <legend>COSO</legend>
       <label class='input-check'>

@@ -4,28 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Proyecto;
+use App\Project;
+use App\User;
 
 class FormController extends Controller
 {
     public function handleForm(Request $request)
     {
-      $cosas=$request->only('uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez');
-      $summ = 0;
+      $x=$request->only('uno','tres','cinco','seis',' ocho','diez');
+      $y=$request->only('dos','cuatro','seis', 'ocho','diez');
+      $summX = 0;
+      $summY = 0;
 
+      foreach ($x as $value) {
 
-      foreach ($cosas as $value) {
-
-        $summ+=$value;
+        $summX+=$value;
       }
-      $mainProyects = Proyecto::whereBetween('X',[$summ - 10, $summ + 10])->take(10)->get();
-      $user = User::find(Auth::User()->id);
-      $user->summ = $summ;
-      $user->save();
-      $user->x;
-      $user->y;
 
-      return view('proyectsList')->with('mainProyects', $mainProyects);
+      foreach ($y as $value) {
+
+        $summY+=$value;
+      }
+      $mainProjects = Project::whereBetween('summX',[$summX - 10, $summX + 10])
+                              ->whereBetween('summY',[$summY - 10, $summY + 10])
+                                ->take(10)->get();
+
+      $user = User::find(Auth::User()->id);
+      $user->summX = $summX;
+      $user->summY = $summY;
+      $user->save();
+
+
+
+      return view('projectsList')->with('mainProjects', $mainProjects);
 
     }
 
@@ -36,5 +47,5 @@ class FormController extends Controller
       return view('firstForm');
     }
 
-    
+
 }

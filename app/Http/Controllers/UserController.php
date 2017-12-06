@@ -13,12 +13,12 @@ class UserController extends Controller
       return view('userProfile')->with('user', $user);
     }
 
-    public function editProject(Request $request)
+    public function editUser(Request $request)
     {
 
-      $project = Project::find(Auth::User()->id);
+      $user = User::find(Auth::User()->id);
 
-      $project->validate(
+      $user->validate(
 
         //aca van las  reglas de validacion
       );
@@ -36,4 +36,6 @@ class UserController extends Controller
 
       return view('myProjects')->with('myProjects', $myProjects);
     }
+
+
 }
