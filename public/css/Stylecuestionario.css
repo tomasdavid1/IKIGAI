@@ -9,6 +9,10 @@
   -webkit-text-size-adjust: none;
 }
 
+body{
+  background-color: red;
+}
+
 .logo{
   text-align: center;
 }

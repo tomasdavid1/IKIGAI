@@ -26,16 +26,5 @@ class UserController extends Controller
 
     }
 
-    public function myProjects($value='')
-    {
-      $myProjects =   DB::table('projects_authors')
-                          ->join('projects', 'projects.id', '=', 'projects_id')
-                          ->select('users.*', 'contacts.phone', 'orders.price')
-                          ->where('authors_id', '=', Auth::User()->id)
-                          ->get();
-
-      return view('myProjects')->with('myProjects', $myProjects);
-    }
-
-
+    
 }

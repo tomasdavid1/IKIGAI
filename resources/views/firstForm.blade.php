@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Cuestionario</title>
 
-    <link rel="stylesheet" href="{{   ('css/styleCuestionario.css') }}">
+    <link rel="stylesheet" href="{{  asset('css/Stylecuestionario.css') }}">
   </head>
   <body>
     <h1>¡Un pequeño cuestionario antes de arrancar!</h1>

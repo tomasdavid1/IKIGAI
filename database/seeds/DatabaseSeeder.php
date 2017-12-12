@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      $actors = factory(Project::class)->times(50)->create();
+      $projects = factory(Project::class)->times(50)->create();
+      $messages = factory(Project::class)->times(50)->create();
     }
 }

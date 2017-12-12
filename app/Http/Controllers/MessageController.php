@@ -20,18 +20,29 @@ class MessageController extends Controller
 ]);
   }
 
+public function showNewPartnershipRequest($reciever, $project)
+{
+  return view('newPartnershipRequest')->with('sender', Auth::User()->id);
+                                      ->with('reciever', $reciever);
+                                      ->with('project', $project);
+}
 
 
-
-  public function viewMessage($value='')
+  public function listMessages($value='')
   {
     $myProjects =   DB::table('messages')
-                        ->select('messages.*')
-                        ->where('user_id', '=', Auth::User()->id)
+                        ->select('')
+                        ->where('reciever_id', '=', Auth::User()->id)
                         //->where() aca deberia espexificar que muestre solo el ultimo de cada usuario
                         ->get();
 
     return view('myMessages')->with('myMessages', $myMessages);
   }
+
+  public function FunctionName($value='')
+  {
+    # code...
+  }
+
 
 }

@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/prueba', function(){return view('lista');});
+
 Route::get('MainProyect/{id}', 'ProjectController@mostrarProyectoPrincipal');
 
 Auth::routes();
@@ -23,8 +25,9 @@ Route::get('/createProject', function(){return view ('createProject');});
 
 Route::post('/createProject', 'projectController@createProject');
 
+Route::get('/newPartnershipRequest', 'messageController@showNewPartnershipRequest');
 
-Route::get('listProjects', 'projectController@showMyProjects');
+Route::get('myProjects', 'projectController@showMyProjects');
 
 Route::put('/project/editProject/{id}', 'projectController@editProject');
 
@@ -36,13 +39,12 @@ Route::get('/user', 'userController@showProfile');
 
 Route::put('/user', 'userController@editProfile');
 
-Route::get('/user/myProjects', 'userController@myProjects');
-
+Route::get('/createProject', 'projectController@createProject');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/projectList', 'projectController@showMyRecommendedProjects');
 
 Auth::routes();
 

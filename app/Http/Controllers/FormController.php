@@ -35,8 +35,7 @@ class FormController extends Controller
       $user->save();
 
 
-
-      return view('projectsList')->with('mainProjects', $mainProjects);
+      return view('projectList')->with('mainProjects', $mainProjects);
 
     }
 

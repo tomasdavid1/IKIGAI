@@ -10,7 +10,7 @@ $factory->define(Project::class, function (Faker $faker) {
         'rating' => $faker->randomNumber($nbDigits = NULL, $strict = false),
         'location' => $faker->streetAddress,
         'summary' => $faker->text($maxNbChars = 190),
-        'descrpition' => $faker->paragraph($nbSentences = 5, $variableNbSentences = true),
+        'description' => $faker->paragraph($nbSentences = 5, $variableNbSentences = true),
         'summX' => $faker->numberBetween($min = -20, $max = 20),
         'summY' => $faker->numberBetween($min = -20, $max = 20)
 
