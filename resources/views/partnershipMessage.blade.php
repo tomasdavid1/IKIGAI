@@ -8,14 +8,17 @@
 
     <div class="">
       New Partnership Request
+
     </div>
 
-    <form class="" action="index.html" method="post">
+    <form class="" action="/becomeCollaborator" method="post">
+      {{csrf_field()}}
       <label for="why"></label>
-      <input type="text" id='why' name="" value="">
-      <input type="hidden" name="" value=<?php $sender->id ?>>
-      <input type="hidden" name="" value=<?php $project->id ?>>
-      <input type="hidden" name="" value=<?php $reciever->id ?>>
+      <input type="text" id='why' name="why" value="">
+      <input type="hidden" name="id" value="{{$project->id}}" ?>>
+
+
+      <input type="hidden" name="id" value="{{$project->id}}" ?>>
       <input type="submit" name="" value="">
 
     </form>

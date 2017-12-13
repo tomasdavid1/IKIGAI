@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Project;
+use App\PartnershipMessage;
 
 class MessageController extends Controller
 {
@@ -17,32 +20,92 @@ class MessageController extends Controller
     ]);
     $newMessage = new Message();
     $newMessage->save($request->all());
-]);
   }
-
-public function showNewPartnershipRequest($reciever, $project)
-{
-  return view('newPartnershipRequest')->with('sender', Auth::User()->id);
-                                      ->with('reciever', $reciever);
-                                      ->with('project', $project);
-}
 
 
   public function listMessages($value='')
   {
-    $myProjects =   DB::table('messages')
-                        ->select('')
-                        ->where('reciever_id', '=', Auth::User()->id)
-                        //->where() aca deberia espexificar que muestre solo el ultimo de cada usuario
+    $myProjects =  \DB::table('messages')
+                        ->select('*')
+                        ->groupBy('reciever_id')
+                        ->orderby('created_at', 'DESC')
                         ->get();
 
     return view('myMessages')->with('myMessages', $myMessages);
   }
 
-  public function FunctionName($value='')
+  public function becomeCollaborator(Request $request)
   {
-    # code...
+
+
+    $id = $request->input('id');
+    $project = Project::find($id);
+    $author = $project->author;
+    $body = $request->input('why');
+    $datos['sender_id'] = Auth::User()->id;
+    $datos['reciever_id'] = $author;
+    $datos['body'] = $body;
+    $datos['project_id'] = $id;
+    $newPartnershipRequest = new PartnershipMessage($datos);
+    $newPartnershipRequest->save();
+
+    return view('listProject');
+
   }
+
+  public function showPartnershipRequests($value='')
+  {
+    $messages = \DB::table('partnership_messages')
+                        ->select('*')
+                        ->where('reciever_id', '=', Auth::User()->id)
+                        ->where('status', '=', NULL)
+                        ->orderby('created_at', 'DESC')
+                        ->get();
+    return view('')
+
+  }
+
+  public function requestDecision(Request $request)
+  {
+
+
+
+
+    $status = $request->input('status');
+
+
+
+    if ($status = 1) {
+
+
+      $project =  $request->input('');
+      \DB::table('projects_collaborators')
+        ->insert(['project_id' => $project->id , 'collaborator_id' => Auth::User()->id]);
+
+      $partnershipMessage = find($request->input('id'));
+
+
+      \DB::table('partnershipMessages')
+        ->insert([1 => $partnershipMessages->status]);
+
+
+
+
+    } else {
+
+    $project =  $request->input('');
+
+
+    $partnershipMessage = find($request->input('id'));
+
+
+    \DB::table('partnershipMessages')
+      ->insert([0 => $partnershipMessages->status]);
+
+          }
+
+  }
+
 
 
 }

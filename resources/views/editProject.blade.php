@@ -33,7 +33,7 @@
              <label class='input-check'>Please provide a Description</label>
              <textarea name="name" rows="1" cols="10" ></textarea>
 
-             <label for="input-text">Title</label>
+             <label for="input-text">Name your Project!</label>
              <input type="text" name="title" value = <php>$myProjects['title']</php>'}}>
 
              <input type="text" name="X" value="{{}}">X

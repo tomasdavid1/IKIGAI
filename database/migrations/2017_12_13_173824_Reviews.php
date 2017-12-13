@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PartnershipMessages extends Migration
+class Reviews extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class PartnershipMessages extends Migration
      */
     public function up()
     {
-      Schema::create('partnership_messages', function ($table) {
+      Schema::create('reviews', function ($table) {
       $table->increments('id');
-      $table->integer('sender_id')->unsigned();
-      $table->foreign('sender_id')->references('id')->on('users');
-      $table->integer('reciever_id')->unsigned();
-      $table->foreign('reciever_id')->references('id')->on('users');
-      $table->string('body');
+      $table->integer('reviewer_id')->unsigned();
+      $table->foreign('reviewer_id')->references('id')->on('users');
       $table->integer('project_id')->unsigned();
       $table->foreign('project_id')->references('id')->on('projects');
-      $table->integer('status')->nullable();
+      $table->string('body');
       $table->timestamps();
     });
   }
@@ -34,6 +31,6 @@ class PartnershipMessages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partnershipMessages');
+        Schema::dropIfExists('reviews');
     }
 }

@@ -8,7 +8,7 @@
     <a href="/projectList/hot" class="list-group-item">Hot</a>
     <a href="/profiles" class="list-group-item">Explorar</a>
     <br><br><br>
-    <a href="/projectCreator" class="list-group-item active">CREAR UN PROYECTO</a>
+    <a href="/createProject" class="list-group-item active">CREAR UN PROYECTO</a>
   </div>
 </div>
 @endsection
@@ -26,11 +26,8 @@
           <p class="card-text">{{ $project->summary }}></p>
 
           <br><br>
-          <form class="" action method='get'>
-            <input type="submit" name="" value="">Learn More!
-            <input type="hidden" name="project_id" value="<?php $project->id  ?>">
-            
-          </form>
+          <a href="/project/{{$project->id}}" class="btn btn-success" style='background-color: #28A7F5;
+    border-color: #28A7F5;'>Find More</a>
         </div>
       </div>
 

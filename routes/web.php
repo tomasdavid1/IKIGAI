@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/prueba', function(){return view('lista');});
 
-Route::get('MainProyect/{id}', 'ProjectController@mostrarProyectoPrincipal');
 
 Auth::routes();
 
@@ -31,25 +29,26 @@ Route::get('myProjects', 'projectController@showMyProjects');
 
 Route::put('/project/editProject/{id}', 'projectController@editProject');
 
-Route::get('/project/becomeCollaborator/{id}', function(){return view('project');});
+Route::get('/project/{id}', 'projectController@showProject');
 
-Route::post('/project/becomeCollaborator/{id}','ProjectController@becomeCollaborator ');
+Route::get('becomeCollaborator/{id}','ProjectController@newPartnershipRequest');
+
+Route::post('becomeCollaborator','messageController@becomeCollaborator');
 
 Route::get('/user', 'userController@showProfile');
 
 Route::put('/user', 'userController@editProfile');
 
-Route::get('/createProject', 'projectController@createProject');
-
+Route::get('/myMessages', 'messageController@listMessages');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/myPartnershipRequests/{id}', 'messageController@myPartnershipRequests');
 
 Route::get('/projectList', 'projectController@showMyRecommendedProjects');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'projectController@showMyRecommendedProjects');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

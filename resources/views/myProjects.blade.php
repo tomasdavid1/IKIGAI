@@ -60,12 +60,13 @@
 
       <!-- Page Features -->
 
-      <?php if ($myProjects == []): ?>
+      <?php if (count($myProjects) == 0): ?>
+
 
 
         <header class="jumbotron my-4">
 
-          <h1 class="display-3"><?php Auth::User()->name ?> aun no has creado ningun proyecto!</h1>
+          <h1 class="display-3"><?php echo Auth::User()->name ?> Aún no has creado ningú n proyecto!</h1>
           <p class="lead"> Un proyecto es una oportunidad de crecimiento personal y para eso IKIGAI te ayuda a conectarte con personas que estimulen tu desarrollo! Podes crear uno a continuacion y ya ser parte de nuestra comunidad!</p>
           <a href="/projectForm" class="btn btn-primary btn-lg">Crear un proyecto +</a>
         </header>
@@ -75,32 +76,25 @@
 
         <header class="jumbotron my-4">
 
-          <h1 class="display-3"><?php Auth::User()->name ?> estos son tus proyectos!</h1>
+          <h1 class="display-3"><?php echo Auth::User()->name ?> estos son tus proyectos!</h1>
           <p class="lead"> Un proyecto es una oportunidad de crecimiento personal y para eso IKIGAI te ayuda a conectarte con personas que estimulen tu desarrollo! Podes crear uno a continuacion y ya ser parte de nuestra comunidad!</p>
-          
+
         </header>
 
         <div class="row text-center">
 
-          <?php foreach ($myProjects as $myProject ): ?>
+          <?php foreach ($myProjects as $project ): ?>
 
             <div class="col-lg-3 col-md-6 mb-4">
               <div class="card">
 
                 <div class="card-body">
-                  <h4 class="card-title">{{$myProject->title}}</h4>
-                  <p class="card-text">{{$myProject->summary}}</p>
+                  <h4 class="card-title">{{$project->title}}</h4>
+                  <p class="card-text">{{$project->summary}}</p>
                 </div>
                 <div class="card-footer">
-                  <form class=""  method="get">
+                  <a href="/project/{{$project->id}}">Find More</a>
 
-                    <div class="nav-link js-scroll-trigger">
-
-
-                    <input type="submit" name="" value="">
-                    </div>
-                    <input type="hidden" name="" value=<?php $myProject->id ?>>
-                  </form>
                 </div>
               </div>
             </div>
@@ -110,6 +104,43 @@
         </div>
 
       <?php endif; ?>
+
+      <?php if (count($myPartnerships) == 0): ?>
+
+        <header class="jumbotron my-4">
+
+          <h1 class="display-3"><?php echo Auth::User()->name ?> Aún no has participado de ningun proyecto!</h1>
+          <a href="/projectList" class="btn btn-primary btn-lg">Visita nuestras recomendaciones para ver cuales son los mejores para vos!</a>
+        </header>
+
+
+      <?php else: ?>
+
+        <header class="jumbotron my-4">
+
+          <h1 class="display-3"><?php echo Auth::User()->name ?> estos son tus participaciones!</h1>
+
+        </header>
+
+          <?php foreach ($myPartnerships as $partnership ): ?>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+
+            <div class="card-body">
+              <h4 class="card-title">{{$partnership->title}}</h4>
+              <p class="card-text">{{$partnership->summary}}</p>
+            </div>
+            <div class="card-footer">
+
+              <a href="/project/{{$partnership->id}}">Find More</a>
+
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+
+
+      <?php endif ?>
 
       <!-- /.row -->
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Project;
+use App\Message;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      $projects = factory(Project::class)->times(50)->create();
-      $messages = factory(Project::class)->times(50)->create();
+      //$projects = factory(Project::class)->times(50)->create();
+      $messages = factory(Message::class)->times(50)->create();
     }
 }

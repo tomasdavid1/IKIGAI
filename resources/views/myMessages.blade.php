@@ -7,11 +7,11 @@
   <body>
 
 
-{{<?php foreach ($myMessages as $key => $value): ?>
+{{<?php foreach ($myMessages as $message): ?>
   <li>
 
-    <?php echo $value ?>
-    
+    <?php echo $message ?>
+
 
   </li>
 <?php endforeach; ?>}}

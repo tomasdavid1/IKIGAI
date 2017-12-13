@@ -33,7 +33,7 @@ class ProjectController extends Controller
       \DB::table('projects_authors')
         ->insert(['project_id' => $newProject->id , 'author_id' => Auth::User()->id]);
 
-      return view('home');
+      return view('projectList');
 
     }
 
@@ -53,7 +53,14 @@ class ProjectController extends Controller
                           ->where('author_id', '=', Auth::User()->id)
                           ->get();
 
-      return view('myProjects')->with('myProjects', $myProjects);
+      $myPartnerships = \DB::table('projects_collaborators')
+                          ->join('projects', 'projects.id', '=', 'projects_collaborators.project_id')
+                          ->where('collaborator_id', '=', Auth::User()->id)
+                          ->get();
+
+
+      return view('myProjects')->with('myPartnerships', $myPartnerships)->with('myProjects', $myProjects);
+
 
     }
 
@@ -91,13 +98,7 @@ class ProjectController extends Controller
 
 
 
-    public function becomeCollaborator(Request $request)
-    {
 
-      $newMessage = new PartnershipMessage();
-      $newMessage->save($request->all());
-
-    }
 
     public function confirm($value='')
     {
@@ -106,6 +107,20 @@ class ProjectController extends Controller
 
     }
 
+    public function showProject($id)
+    {
+      $project =  Project::find($id);
+
+      return view('projectView')->with('project', $project);
+    }
+
+
+    public function newPartnershipRequest($id)
+    {
+      $project =  Project::find($id);
+
+      return view('PartnershipMessage')->with('project', $project);
+    }
 
 
 }
