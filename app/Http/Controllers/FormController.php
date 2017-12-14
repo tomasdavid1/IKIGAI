@@ -11,6 +11,9 @@ class FormController extends Controller
 {
     public function handleForm(Request $request)
     {
+
+
+
       $x=$request->only('uno','tres','cinco','seis',' ocho','diez');
       $y=$request->only('dos','cuatro','seis', 'ocho','diez');
       $summX = 0;
@@ -40,10 +43,19 @@ class FormController extends Controller
     }
 
 
-
     public function index()
     {
-      return view('firstForm');
+
+
+      if (Auth::User() && Auth::User()->summX !== NULL) {
+
+        return redirect()->route('projectList');
+
+      } else {
+
+        return view('firstForm');
+
+      }
     }
 
 

@@ -12,28 +12,93 @@ class ProjectController extends Controller
 {
 
 
+
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
     public function createProject(Request $request)
     {
 
+
+
       $request->validate( [
        'title'=>'required|max:25',
-       'location'=>'required',
        'summary'=>'required|max:150',
-       'description'=> 'required',
+       'description'=> 'required'
       ],
       [
         //aca van los mensajes ej 'title.required => 'el campo es requerido' sino te aparece en ingles
       ]);
-      $datos = $request->all();
+      $summX = 0;
+      $summY = 0;
+      $datos['title'] = $request->input('title');
+      $impact = $request->input('impact');
+      if ($impact == -1) {
+        $summX+= -2;
+        $summY+= -2;
+      } elseif( $impact == 0){
+        $summX+= 1;
+        $summY+= 1;
+      } else {
+        $summX+= 5;
+        $summY+= 5;
+      }
+      $culture = $request->input('culture');
+
+      if ($culture == -1) {
+        $summX+= 5;
+        $summY+= -5;
+      } elseif( $culture == 0){
+        $summX+= -2;
+        $summY+= 2;
+      } else {
+        $summX+= -5;
+        $summY+= 5;
+      }
+      $field = $request->input('field');
+      if ($field = 1) {
+        $summX+= -10;
+        $summY+= 10;
+      } elseif( $field = 2){
+        $summX+= 10;
+        $summY+= 10;
+      } elseif($field = 3) {
+        $summX+= -10;
+        $summY+= -10;
+      } else{
+        $summX+= 10;
+        $summY+= -10;
+      };
+
+      $formal = $request->input('formal');
+      if ($formal = 1) {
+        $summX = -5;
+        $summY = -5;
+      } else {
+        $summX = 5;
+        $summY = 5;
+      }
+
+
       $datos['author'] = Auth::User()->id;
       $datos['rating'] = 0;
+      $datos['summary'] = $request->input('summary');
+      $datos['description'] = $request->input('description');
+      $datos['summX'] = $summX;
+      $datos['summY'] = $summY;
+
+
+
+
       $newProject = new Project($datos);
       $newProject->save();
 
       \DB::table('projects_authors')
         ->insert(['project_id' => $newProject->id , 'author_id' => Auth::User()->id]);
 
-      return view('projectList');
+      return redirect()->route('projectList');;
 
     }
 
@@ -68,8 +133,8 @@ class ProjectController extends Controller
     public function showMyRecommendedProjects($value='')
     {
 
-      $summX = User::find(Auth::User()->summX);
-      $summY = User::find(Auth::User()->summY);
+      $summX = Auth::User()->summX;
+      $summY = Auth::User()->summY;
       $mainProjects = Project::whereBetween('summX',[$summX - 10, $summX + 10])
                               ->whereBetween('summY',[$summY - 10, $summY + 10])
                                 ->take(10)->get();
@@ -111,6 +176,7 @@ class ProjectController extends Controller
     {
       $project =  Project::find($id);
 
+
       return view('projectView')->with('project', $project);
     }
 
@@ -119,7 +185,7 @@ class ProjectController extends Controller
     {
       $project =  Project::find($id);
 
-      return view('PartnershipMessage')->with('project', $project);
+      return view('partnershipSend')->with('project', $project);
     }
 
 

@@ -13,13 +13,14 @@
 
 
 
+
 Auth::routes();
 
 Route::get('/firstForm', 'formController@index');
 
 Route::post('/firstForm','formController@handleForm');
 
-Route::get('/createProject', function(){return view ('createProject');});
+Route::get('/newProject', function(){return view('projectForm');})->name('newProject');
 
 Route::post('/createProject', 'projectController@createProject');
 
@@ -35,6 +36,10 @@ Route::get('becomeCollaborator/{id}','ProjectController@newPartnershipRequest');
 
 Route::post('becomeCollaborator','messageController@becomeCollaborator');
 
+Route::post('/requestDecision', 'messageController@requestDecision');
+
+Route::get('/partnershipsRecieved','messageController@showPartnershipRequests');
+
 Route::get('/user', 'userController@showProfile');
 
 Route::put('/user', 'userController@editProfile');
@@ -45,7 +50,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/myPartnershipRequests/{id}', 'messageController@myPartnershipRequests');
 
-Route::get('/projectList', 'projectController@showMyRecommendedProjects');
+Route::get('/myPartnershipRequests/{id}', 'messageController@myPartnershipRequests');
+
+Route::get('/projectList', 'projectController@showMyRecommendedProjects')->name('projectList');
 
 Auth::routes();
 

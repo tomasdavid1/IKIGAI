@@ -13,8 +13,8 @@ class Projects extends Migration
      $table->float('summX')->nullable();
      $table->float('summY')->nullable();
      $table->string('author');
-     $table->bigInteger('rating');
-     $table->string('location');
+     $table->bigInteger('rating')->nullable();
+     $table->string('location')->nullable();;
      $table->string('summary');
      $table->longText('description');
      $table->timestamps();

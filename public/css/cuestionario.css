@@ -1,0 +1,61 @@
+body {
+margin-top: 10vh;
+background: #fff;
+font-family: 'Roboto', 'Helvetica neue', sans-serif;
+}
+form {
+max-width: 500px;
+margin: 0 auto;
+padding: 5px 60px;
+margin-bottom:40px;
+padding-left:0;
+}
+
+form input,
+form textarea {
+width: 100%;
+border: 2px solid #ddd;
+margin: 5px 0;
+padding: 7px 10px;
+
+}
+form textarea{
+max-width: 100%;
+min-width: 100%;
+max-height: 500px;
+}
+
+h2{
+margin-bottom: 5px;
+}
+p{
+text-align: justify;
+margin-top:10px
+}
+#posts{
+height: auto;
+max-height: 700px;
+overflow-y: hidden;
+padding-right:30px;
+-ms-overflow-style: none;
+}
+#posts:hover{
+overflow-y: scroll;
+}
+.link{
+color:#3498db;
+}
+#submit {
+background: #c4825d;
+border:none;
+color: #fff;
+padding: 10px 0;
+letter-spacing: .5px;
+font-size: 1.1em;
+}
+#reset{
+opacity: .6;
+background: none;
+border:none;
+outline: none;
+}

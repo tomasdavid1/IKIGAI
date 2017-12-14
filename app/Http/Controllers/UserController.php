@@ -7,6 +7,13 @@ use App\User;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
+
     public function showProfile()
     {
       $user =  User::find(Auth::User()->id);
@@ -26,5 +33,5 @@ class UserController extends Controller
 
     }
 
-    
+
 }

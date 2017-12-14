@@ -22,7 +22,7 @@ class Project extends Model
   public function collaborators()
   {
     return $this
-      ->belongsToMany(User::class, 'projects_collaborators', 'project_id', 'user_id');
+      ->belongsToMany(User::class, 'projects_collaborators', 'project_id', 'collaborator_id');
   }
 
   public function authors()

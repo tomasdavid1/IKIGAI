@@ -6,7 +6,7 @@ use App\Project;
 $factory->define(Project::class, function (Faker $faker) {
     return [
         'title'=>$faker->name,
-        'author' => $faker->name,
+        'author' => $faker->numberBetween($min = 1, $max = 50),
         'rating' => $faker->randomNumber($nbDigits = NULL, $strict = false),
         'location' => $faker->streetAddress,
         'summary' => $faker->text($maxNbChars = 190),

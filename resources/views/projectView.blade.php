@@ -35,7 +35,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/myprojects">Mis proyectos</a>
+              <a class="nav-link" href="/myProjects">Mis proyectos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/myprofile">Mi perfil</a>
@@ -77,6 +77,44 @@
           </div>
           <!-- /.card -->
 
+          <?php if (Auth::User()->id == $project->collaborator_id || Auth::User()->id == $project->author): ?>
+
+
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Project Collaborators
+            </div>
+
+            <?php if (count($project->collaborators) == 0): ?>
+
+                <div class="card-body">
+              <p>No collaborators have participated yet!</p>
+            </div>
+
+            <?php else: ?>
+
+            <?php foreach ($project->collaborators as $collaborator): ?>
+
+              <div class="card-body">
+                <p>{{$collaborator->name}}</p>
+                <hr>
+              </div>
+            <?php endforeach; ?>
+
+            <?php endif; ?>
+
+                <?php if (Auth::User()->id != $project->author): ?>
+
+
+
+                <a href="/becomeCollaborator/{{$project->id}}" class="btn btn-success">Contribute</a>
+
+              <?php endif; ?>
+
+          </div>
+
+        <?php endif; ?>
+
           <div class="card card-outline-secondary my-4">
             <div class="card-header">
               Project Reviews
@@ -91,7 +129,12 @@
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
               <small class="text-muted">Posted by @Contributor on @date</small>
               <hr>
-              <a href="/becomeCollaborator/{{$project->id}}" class="btn btn-success">Contribute</a>
+
+                <?php if (Auth::User()->id != $project->author): ?>
+
+                <a href="/becomeCollaborator/{{$project->id}}" class="btn btn-success">Contribute</a>
+
+              <?php endif; ?>
             </div>
           </div>
           <!-- /.card -->

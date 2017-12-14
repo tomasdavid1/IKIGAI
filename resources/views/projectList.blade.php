@@ -8,7 +8,7 @@
     <a href="/projectList/hot" class="list-group-item">Hot</a>
     <a href="/profiles" class="list-group-item">Explorar</a>
     <br><br><br>
-    <a href="/createProject" class="list-group-item active">CREAR UN PROYECTO</a>
+    <a href="{{route('newProject')}}" class="list-group-item active">CREAR UN PROYECTO</a>
   </div>
 </div>
 @endsection

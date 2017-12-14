@@ -10,6 +10,14 @@ use App\PartnershipMessage;
 class MessageController extends Controller
 {
 
+
+
+
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
   public function createMessage(Request $request)
   {
     $this->validate($requst, [
@@ -41,7 +49,7 @@ class MessageController extends Controller
     $id = $request->input('id');
     $project = Project::find($id);
     $author = $project->author;
-    $body = $request->input('why');
+    $body = $request->input('body');
     $datos['sender_id'] = Auth::User()->id;
     $datos['reciever_id'] = $author;
     $datos['body'] = $body;
@@ -49,7 +57,7 @@ class MessageController extends Controller
     $newPartnershipRequest = new PartnershipMessage($datos);
     $newPartnershipRequest->save();
 
-    return view('listProject');
+    return redirect()->route('projectList');
 
   }
 
@@ -58,49 +66,39 @@ class MessageController extends Controller
     $messages = \DB::table('partnership_messages')
                         ->select('*')
                         ->where('reciever_id', '=', Auth::User()->id)
-                        ->where('status', '=', NULL)
+                        ->where('status', '=', 0)
                         ->orderby('created_at', 'DESC')
                         ->get();
-    return view('')
+    return view('messenger')->with('messages', $messages);
 
   }
 
   public function requestDecision(Request $request)
   {
-
-
-
-
     $status = $request->input('status');
 
-
-
-    if ($status = 1) {
-
-
-      $project =  $request->input('');
+    if ($status == 'accept') {
+      $project =  $request->input('id');
+      $collaborator_id = $request->input('collaborator_id');
       \DB::table('projects_collaborators')
-        ->insert(['project_id' => $project->id , 'collaborator_id' => Auth::User()->id]);
-
-      $partnershipMessage = find($request->input('id'));
+        ->insert(['project_id' => $project->id , 'collaborator_id' => $collaborator_id]);
 
 
-      \DB::table('partnershipMessages')
-        ->insert([1 => $partnershipMessages->status]);
-
+      $partnershipMessage = PartnershipMessage::find($request->input('id'));
+      $partnershipMessages->fill(['status' => '1']);
+      $partnershipMessages->save();
 
 
 
     } else {
 
-    $project =  $request->input('');
+
+    $partnershipMessage = PartnershipMessage::find($request->input('id'));
+    $partnershipMessage->fill(['status' => '2']);
+    $partnershipMessage->save();
 
 
-    $partnershipMessage = find($request->input('id'));
-
-
-    \DB::table('partnershipMessages')
-      ->insert([0 => $partnershipMessages->status]);
+      return redirect()->route('projectList');
 
           }
 
