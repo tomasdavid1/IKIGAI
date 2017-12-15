@@ -24,7 +24,7 @@
 
     <h1>¡Un pequeño cuestionario antes de arrancar!</h1>
 <div class="logo">
-  <img src="{{asset('img/logo.jpg" alt="Ikigai')}}" class="ikilogo">
+  <img src="{{asset('img/IKIGAILOGO.png" alt="Ikigai')}}" class="ikilogo">
 
 </div>
 

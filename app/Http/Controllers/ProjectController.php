@@ -137,11 +137,27 @@ class ProjectController extends Controller
       $summY = Auth::User()->summY;
       $mainProjects = Project::whereBetween('summX',[$summX - 10, $summX + 10])
                               ->whereBetween('summY',[$summY - 10, $summY + 10])
-                                ->take(10)->get();
+                              ->take(10)->get();
 
       return view('projectList')->with('mainProjects', $mainProjects);
     }
 
+
+    public function listHotProjects($value='')
+    {
+
+      $mainProjects = Project::orderBy('rating')->take(10)->get();
+
+      return view('projectList')->with('mainProjects', $mainProjects);
+    }
+
+    public function listRandomProjects($value='')
+    {
+
+      $mainProjects = Project::inRandomOrder()->take(10)->get();
+
+      return view('projectList')->with('mainProjects', $mainProjects);
+    }
     public function editMyProjects(Request $request)
     {
       $request->validate( [
@@ -165,12 +181,20 @@ class ProjectController extends Controller
 
 
 
-    public function confirm($value='')
+    public function deleteCollaborator($collaborator_id, $project_id)
     {
 
+      $row =   \DB::table('projects_collaborators')
+                          ->where('project_id', '=', $project_id)
+                          ->where('collaborator_id', '=', $collaborator_id)
+                          ->delete();
+
+      return redirect()->route('projectList');;
 
 
     }
+
+
 
     public function showProject($id)
     {
@@ -187,6 +211,9 @@ class ProjectController extends Controller
 
       return view('partnershipSend')->with('project', $project);
     }
+
+
+
 
 
 }

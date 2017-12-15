@@ -22,7 +22,7 @@ class PartnershipMessages extends Migration
       $table->string('body');
       $table->integer('project_id')->unsigned();
       $table->foreign('project_id')->references('id')->on('projects');
-      $table->integer('status')->nullable();
+      $table->integer('status')->nullable()->default(0)->unsigned();
       $table->timestamps();
     });
   }

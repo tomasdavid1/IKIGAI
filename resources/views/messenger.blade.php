@@ -32,6 +32,12 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link" href="/partnershipsRecieved">
+              <img src="{{asset('img/mensajes.png') }}" style="vertical-align: middle;
+  border-style: none;
+  height: 4vh;"></a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/projectList">Proyectos
               </a>
             </li>

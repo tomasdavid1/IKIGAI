@@ -75,27 +75,33 @@ class MessageController extends Controller
 
   public function requestDecision(Request $request)
   {
-    $status = $request->input('status');
+    $status = $request->input('decision');
 
-    if ($status == 'accept') {
-      $project =  $request->input('id');
+    if ($status == 'Accept') {
+
+      $project_id =  $request->input('project_id');
       $collaborator_id = $request->input('collaborator_id');
-      \DB::table('projects_collaborators')
-        ->insert(['project_id' => $project->id , 'collaborator_id' => $collaborator_id]);
+      $project = Project::find($project_id);
+      $project->collaborators()->attach($collaborator_id);
+      $project->save();
 
 
-      $partnershipMessage = PartnershipMessage::find($request->input('id'));
-      $partnershipMessages->fill(['status' => '1']);
-      $partnershipMessages->save();
+        $partnershipMessage = PartnershipMessage::find($request->input('project_id'));
+        $partnershipMessage->status = 1;
+        $partnershipMessage->save();
+
+              return redirect()->route('projectList');
 
 
 
     } else {
 
 
-    $partnershipMessage = PartnershipMessage::find($request->input('id'));
-    $partnershipMessage->fill(['status' => '2']);
-    $partnershipMessage->save();
+      $partnershipMessage = PartnershipMessage::find($request->input('project_id'));
+      $partnershipMessage->status = 2;
+      $partnershipMessage->save( );
+
+
 
 
       return redirect()->route('projectList');

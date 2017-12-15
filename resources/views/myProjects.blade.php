@@ -32,10 +32,17 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link" href="/partnershipsRecieved">
+              <img src="{{asset('img/mensajes.png') }}" style="vertical-align: middle;
+  border-style: none;
+  height: 4vh;"></a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/projectList">Proyectos
               </a>
             </li>
             <li class="nav-item active">
+
               <a class="nav-link" href="/myProjects">Mis proyectos</a>
                 <span class="sr-only">(current)</span>
             </li>
@@ -68,7 +75,7 @@
 
           <h1 class="display-3"><?php echo Auth::User()->name ?> Aún no has creado ningú n proyecto!</h1>
           <p class="lead"> Un proyecto es una oportunidad de crecimiento personal y para eso IKIGAI te ayuda a conectarte con personas que estimulen tu desarrollo! Podes crear uno a continuacion y ya ser parte de nuestra comunidad!</p>
-          <a href="/projectForm" class="btn btn-primary btn-lg">Crear un proyecto +</a>
+          <a href="/newProject" class="btn btn-primary btn-lg">Crear un proyecto +</a>
         </header>
 
       <?php else: ?>

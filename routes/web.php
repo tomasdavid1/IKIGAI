@@ -16,6 +16,8 @@
 
 Auth::routes();
 
+Route::get('/', function(){return view('index');});
+
 Route::get('/firstForm', 'formController@index');
 
 Route::post('/firstForm','formController@handleForm');
@@ -38,6 +40,8 @@ Route::post('becomeCollaborator','messageController@becomeCollaborator');
 
 Route::post('/requestDecision', 'messageController@requestDecision');
 
+Route::get('/deleteCollaborator/{collaborator_id}/{project_id}', 'projectController@deleteCollaborator')->name('deleteCollaborator');
+
 Route::get('/partnershipsRecieved','messageController@showPartnershipRequests');
 
 Route::get('/user', 'userController@showProfile');
@@ -55,6 +59,12 @@ Route::get('/myPartnershipRequests/{id}', 'messageController@myPartnershipReques
 Route::get('/projectList', 'projectController@showMyRecommendedProjects')->name('projectList');
 
 Auth::routes();
+
+Route::get('/hot', 'projectController@listHotProjects');
+
+Route::get('/explore', 'projectController@listRandomProjects');
+
+Route::get('myProfile', function(){return view('myProfile');});
 
 Route::get('/home', 'projectController@showMyRecommendedProjects');
 

@@ -17,7 +17,7 @@ class Project extends Model
   private $descrpition;
   private $collaborators;*/
 
-  protected $fillable = ['title', 'summX', 'summY', 'author', 'rating', 'location',  'summary', 'description'];
+  protected $fillable = ['title', 'summX', 'summY', 'author', 'rating', 'location',  'summary', 'description', 'created_at', 'updated_at'];
 
   public function collaborators()
   {

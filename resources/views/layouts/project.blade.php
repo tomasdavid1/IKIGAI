@@ -38,6 +38,7 @@
                 <img src="{{asset('img/mensajes.png') }}" style="vertical-align: middle;
     border-style: none;
     height: 4vh;"></a>
+              </li>
               <li class="dropdown">
 
               <a class="nav-link" href="/projectList">Proyectos
@@ -93,12 +94,7 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+  
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{asset('css/bootstrap/vendor/jquery/jquery.min.js')}}"></script>

@@ -38,7 +38,7 @@
               <a class="nav-link" href="/myProjects">Mis proyectos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/myprofile">Mi perfil</a>
+              <a class="nav-link" href="/myProfile">Mi perfil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/help">Help</a>
@@ -96,7 +96,14 @@
             <?php foreach ($project->collaborators as $collaborator): ?>
 
               <div class="card-body">
-                <p>{{$collaborator->name}}</p>
+                <p style="display: flex;justify-content: space-between;">
+                  <span>{{$collaborator->name}}</span>
+
+                  <a class="" href="{{ route('deleteCollaborator',['collaborator_id'=>$collaborator->id, 'project_id' => $project->id])}}">
+                  <img src="{{asset('img/images.png') }}" style="vertical-align: middle;
+                  border-style: none;
+                  height: 4vh;"></a>
+                </p>
                 <hr>
               </div>
             <?php endforeach; ?>
